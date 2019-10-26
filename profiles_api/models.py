@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -25,7 +26,7 @@ class UserProfileManager(BaseUserManager):
         user = self.create_user(email, name, password)
 
         user.is_superuser = True
-        user.is_staff = AbstractBaseUser
+        user.is_staff = True
         user.save(using=self.db)
 
         return user
@@ -51,6 +52,6 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         """Retrieve short name of user"""
         return self.name
 
-        def __str__(self):
-            """Return string representation of our user"""
-            return self.email
+    def __str__(self):
+        """Return string representation of our user"""
+        return self.email
